@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0">         
+  <xsd:element name="Personajes">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Personaje" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element type="xsd:string" name="Experiencia"/>
+              <xsd:element name="Armas">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element type="xsd:string" name="Arma" maxOccurs="unbounded" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Armaduras">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element type="xsd:string" name="Armadura" maxOccurs="unbounded" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Objetos">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Objeto" maxOccurs="unbounded" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="xsd:string">
+                            <xsd:attribute type="xsd:string" name="cantidad"/>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Habilidades">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Habilidad" maxOccurs="unbounded" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="xsd:string">
+                            <xsd:attribute type="xsd:string" name="hab_de_clase"/>
+                            <xsd:attribute type="xsd:string" name="total" />
+                            <xsd:attribute type="xsd:string" name="solo_entrenada" />
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Dotes">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element type="xsd:string" name="Dote" maxOccurs="unbounded" minOccurs="0"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Conjuros">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Conjuro" maxOccurs="unbounded" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="xsd:string">
+                            <xsd:attribute type="xsd:string" name="escuela"/>
+                            <xsd:attribute type="xsd:string" name="tiempo_lanzamiento"/>
+                            <xsd:attribute type="xsd:string" name="Alcance"/>
+                            <xsd:attribute type="xsd:string" name="nivel"/>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+			<xsd:attribute type="xsd:string" name="nombre"/>
+            <xsd:attribute type="xsd:string" name="fuerza"/>
+            <xsd:attribute type="xsd:string" name="destreza"/>
+            <xsd:attribute type="xsd:string" name="constitucion"/>
+            <xsd:attribute type="xsd:string" name="inteligencia"/>
+            <xsd:attribute type="xsd:string" name="sabiduria"/>
+            <xsd:attribute type="xsd:string" name="carisma"/>
+            <xsd:attribute type="xsd:string" name="clase"/>
+            <xsd:attribute type="xsd:string" name="raza"/>
+            <xsd:attribute type="xsd:string" name="sexo"/>
+            <xsd:attribute type="xsd:string" name="alineamiento"/>
+            <xsd:attribute type="xsd:string" name="nivel"/>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

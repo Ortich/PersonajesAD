@@ -1,0 +1,95 @@
+<Personajes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EsquemaPersonaje.xsd">
+	
+	<Personaje nombre="Aeldis" fuerza="15" destreza="17" constitucion="10" inteligencia="13" sabiduria="14" carisma="10" clase="picaro" raza="elfo" sexo="hombre" alineamiento="NN" nivel="3">
+		<Experiencia>6700</Experiencia>
+		<Armas>
+			<Arma>Daga de acero negro</Arma>
+			<Arma>Arco corto elfico</Arma>
+		</Armas>
+		<Armaduras>
+			<Armadura>Armadura de cuero completa</Armadura>
+			<Armadura>Botas encantadas de prisa</Armadura>
+		</Armaduras>
+		<Objetos>
+			<Objeto cantidad="2">Herramientas de ladron</Objeto>
+			<Objeto cantidad="10">Raciones</Objeto>
+		</Objetos>
+		<Habilidades>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="no">Acrobacias</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="no">Averiguar intenciones</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="si">Conocimiento de conjuros</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Curar</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Diplomacia</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="no">Engañar</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="si">Inutilizar mecanismo</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Montar</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Nadar</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="no">Percepcion</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="si">Saber Arcano</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Dungeons</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Geografia</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Historia</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Local</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Naturaleza</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Religion</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7"	solo_entrenada="no">Sigilo</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7"	solo_entrenada="no">Trepar</Habilidad>
+		</Habilidades>
+		<Dotes>
+			<Dote>Sigiloso</Dote>
+			<Dote>Soltura con los criticos</Dote>
+			<Dote>Sutileza con las armas</Dote>
+		</Dotes>
+		<Conjuros>
+			<Conjuro escuela="ilusion(engaño)" tiempo_lanzamiento="1" Alcance="Intermedio" nivel="2">Invisibilidad</Conjuro>
+		</Conjuros>
+	</Personaje>
+	
+	<Personaje nombre="Blada" fuerza="12" destreza="16" constitucion="14" inteligencia="18" sabiduria="17" carisma="17" clase="mago" raza="hechizero" sexo="mujer" alineamiento="NB" nivel="5">
+		<Experiencia>6700</Experiencia>
+		<Armas>
+			<Arma>Baston de las Eras</Arma>
+			<Arma>Daga de hierro</Arma>
+		</Armas>
+		<Armaduras>
+			<Armadura>Armadura de cuero completa</Armadura>
+			<Armadura>Anillo almacen de hechizos de nivel 3</Armadura>
+		</Armaduras>
+		<Objetos>
+			<Objeto cantidad="10">Raciones</Objeto>
+			<Objeto cantidad="5">Pergaminos</Objeto>
+		</Objetos>
+		<Habilidades>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Acrobacias</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Averiguar intenciones</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="si">Conocimiento de conjuros</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="no">Curar</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="no">Diplomacia</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Engañar</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="si">Inutilizar mecanismo</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Montar</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7" solo_entrenada="no">Nadar</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="no">Percepcion</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7" solo_entrenada="si">Saber Arcano</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7"	solo_entrenada="si">Saber Dungeons</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Geografia</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Historia</Habilidad>
+			<Habilidad hab_de_clase="si" total="+7"	solo_entrenada="si">Saber Local</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Naturaleza</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="si">Saber Religion</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="no">Sigilo</Habilidad>
+			<Habilidad hab_de_clase="no" total="+7"	solo_entrenada="no">Trepar</Habilidad>
+		</Habilidades>
+		<Dotes>
+			<Dote>Leer Pensamiento</Dote>
+			<Dote>Contrahechizar</Dote>
+			<Dote>Aprendizaje Rapido</Dote>
+		</Dotes>
+		<Conjuros>
+			<Conjuro escuela="Pirotecnia" tiempo_lanzamiento="1" Alcance="Alto" nivel="3">Bola de Fuego</Conjuro>
+			<Conjuro escuela="Pirotecnia" tiempo_lanzamiento="1" Alcance="Alto" nivel="4">Muro de Fuego</Conjuro>
+			<Conjuro escuela="Conjuracion" tiempo_lanzamiento="1" Alcance="Alto" nivel="5">Invocar Elemental de Fuego V</Conjuro>
+		</Conjuros>
+	</Personaje>
+	
+</Personajes>

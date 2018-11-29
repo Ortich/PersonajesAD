@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<schemas xmlns='http://xml.netbeans.org/schema/JAXBWizConfig' destdir='build/generated-sources/jaxb' projectName='ADPersonajes' version='1.0'>
+	<schema type='-xmlschema' package='javaPersonajes' name='javaPersonajes_Binding'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='xml-resources/jaxb/javaPersonajes_Binding/EsquemaPersonaje.xsd' origLocation='PracticaFinal/EsquemaPersonaje.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+</schemas>
