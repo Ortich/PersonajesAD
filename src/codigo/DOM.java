@@ -166,6 +166,24 @@ public class DOM {
         return encontrado;
     }
 
+    public int modificaPersonaje(String[] datos, String[] armas, String[] armaduras,
+            String[] objetos, String[] dotes, String[] habilidades, String[] conjuros) {
+        try {
+            return 0;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public int annadePersonaje(String[] datos, String[] armas, String[] armaduras,
+            String[] objetos, String[] dotes, String[] habilidades, String[] conjuros) {
+        try {
+            return 0;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
     public boolean modificarTitulo(String tituloBuscado, String tituloModificado) {
         boolean encontrado = false;
         String datos_nodo[] = null;

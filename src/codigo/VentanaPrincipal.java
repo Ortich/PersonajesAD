@@ -96,6 +96,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public int modificarPersonaje(int personaje) {
         try {
+
             return 0;
         } catch (Exception e) {
             jLabelConsolaErrores.setText("Error al modificar personaje");
@@ -110,7 +111,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param numero -> Indice del personaje a mosntrar
      */
     public void actualizaDatos(int numero) {
-
+        boolean sigue = true;
+        int index = 0;
         try {
             //Aqui actualizamos caracteristicas generales del personaje
             jTextFieldNombre.setText(jaxb.misPersonajes.getPersonaje().get(numero).getNombre());
@@ -128,6 +130,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jTextFieldInteligencia.setText(jaxb.misPersonajes.getPersonaje().get(numero).getInteligencia());
             jTextFieldSabiduria.setText(jaxb.misPersonajes.getPersonaje().get(numero).getSabiduria());
             jTextFieldCarisma.setText(jaxb.misPersonajes.getPersonaje().get(numero).getCarisma());
+
+            //Ahora vamos a actualizar los jComboBox
+            //Primero las armas
+            jComboBoxArmas.removeAllItems();
+            while (sigue) {
+                try {
+                    //jComboBoxPersonajes.addItem(jaxb.misPersonajes.getPersonaje().get(index).getNombre());
+                    jComboBoxArmas.addItem(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getArmas().getArma().get(index));
+                    index++;
+                } catch (Exception e) {
+                    sigue = false;
+                }
+
+            }
+            //Ahora vamos a poner en la caja el primer arma
+            jTextFieldArmas.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getArmas().getArma().get(0));
 
         } catch (Exception e) {
             System.out.println("No hay mas personajes");
@@ -222,7 +240,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextFieldDote = new javax.swing.JTextField();
         jComboBoxPersonajes = new javax.swing.JComboBox<>();
         jLabelPersonajes = new javax.swing.JLabel();
-        jButtonMostrarEnPantalla = new javax.swing.JButton();
         jButtonAnnadir = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonAnnadirArma = new javax.swing.JButton();
@@ -406,6 +423,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextFieldCarisma.setText("99");
 
         jComboBoxArmas.setMaximumRowCount(99);
+        jComboBoxArmas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxArmasActionPerformed(evt);
+            }
+        });
 
         jLabelArmas.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabelArmas.setText("Armas");
@@ -506,13 +528,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabelPersonajes.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelPersonajes.setText("Personajes");
-
-        jButtonMostrarEnPantalla.setText("Mostrar en Pantalla");
-        jButtonMostrarEnPantalla.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButtonMostrarEnPantallaMousePressed(evt);
-            }
-        });
 
         jButtonAnnadir.setText("Añadir");
 
@@ -723,10 +738,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabelConjuroAlcance))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabelConsolaErrores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonMostrarEnPantalla)))
+                        .addGap(153, 153, 153)
+                        .addComponent(jButtonModificar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -753,11 +766,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jComboBoxPersonajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelPersonajes))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButtonModificar)
-                                .addComponent(jLabelConsolaErrores))
-                            .addComponent(jButtonMostrarEnPantalla)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonModificar)
+                            .addComponent(jLabelConsolaErrores)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jButtonAnnadir))
@@ -899,19 +910,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAnnadirCojuroActionPerformed
 
-    private void jButtonMostrarEnPantallaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMostrarEnPantallaMousePressed
-        indexPersonaje++;
-        actualizaDatos(indexPersonaje);
-    }//GEN-LAST:event_jButtonMostrarEnPantallaMousePressed
-
     private void jButtonModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonModificarMousePressed
-
+        modificarPersonaje(jComboBoxPersonajes.getSelectedIndex());
     }//GEN-LAST:event_jButtonModificarMousePressed
 
     private void jComboBoxPersonajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPersonajesActionPerformed
         actualizaDatos(jComboBoxPersonajes.getSelectedIndex());
         indexPersonaje = jComboBoxPersonajes.getSelectedIndex();
     }//GEN-LAST:event_jComboBoxPersonajesActionPerformed
+
+    private void jComboBoxArmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxArmasActionPerformed
+        int indexAux = jComboBoxArmas.getSelectedIndex();
+        try {
+            jTextFieldArmas.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getArmas().getArma().get(indexAux));
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jComboBoxArmasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -957,7 +972,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAnnadirDote;
     private javax.swing.JButton jButtonAnnadirObjeto;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JButton jButtonMostrarEnPantalla;
     private javax.swing.JComboBox<String> jComboBoxArmadura;
     private javax.swing.JComboBox<String> jComboBoxArmas;
     private javax.swing.JComboBox<String> jComboBoxConjuros;
