@@ -6,9 +6,9 @@
 package codigo;
 
 import java.io.File;
-import java.util.List;
 import javaPersonajes.*;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 /**
@@ -17,17 +17,18 @@ import javax.xml.bind.Unmarshaller;
  */
 public class JAXB {
 
-    Personajes misPersonajes = null;
+    Personajes misPersonajes;
+    JAXBContext context;
 
     public int abrir_XML_JAXB(File fichero) {
 
         JAXBContext contexto;
         try {
             //Se crea una instancia JAXB
-            contexto = JAXBContext.newInstance(Personajes.class);
+            context = JAXBContext.newInstance(Personajes.class);
 
             //Crea un objeto Unmarsheller
-            Unmarshaller u = contexto.createUnmarshaller();
+            Unmarshaller u = context.createUnmarshaller();
 
             //Deserializa el fichero
             misPersonajes = (Personajes) u.unmarshal(fichero);
@@ -41,23 +42,25 @@ public class JAXB {
         }
     }
 
-    public String recorrerJAXByMostrar() {
+    public int guardarJAXBcomoFILE(File archivo) {
+        try {
 
-        String cadena_resultado = "";
-//
-//        //Crea una lista con objetos de tipo libro
-//        List<Libros.Libro> lLibros = misLibros.getLibro();
-//
-//        //Recorre lalista para sacar los valores
-//        for (int i = 0; i < lLibros.size(); i++) {
-//            cadena_resultado = cadena_resultado + "\n" + "Publicado en:"
-//                    + lLibros.get(i).getPublicadoEn();
-//            cadena_resultado = cadena_resultado + "\n" + "El Autor es:" + lLibros.get(i).getAutor();
-//            cadena_resultado = cadena_resultado + "\n" + "El Titulo es:" + lLibros.get(i).getTitulo();
-//            cadena_resultado = cadena_resultado + "\n" + "La Editorial es:" + lLibros.get(i).getEditorial();
-//            cadena_resultado = cadena_resultado + "\n" + "------------------------------------";
-//        }
-        return cadena_resultado;
+            try {
+
+                //Creamos un objeto marshaller
+                Marshaller m = context.createMarshaller();
+                //Le damos formato para que no nos lo guarde en una linea
+                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                //llamamos al marshaller y serializamos el objeto misPerros en el archivo que le pasamos como parámetro
+                m.marshal(misPersonajes, archivo);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 0;
+
+        } catch (Exception e) {
+            return -1;
+        }
     }
-
 }
