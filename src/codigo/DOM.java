@@ -152,13 +152,4 @@ public class DOM {
             return -1;
         }
     }
-
-    public int modificaPersonaje(String[] datos, String[] armas, String[] armaduras,
-            String[] objetos, String[] dotes, String[] habilidades, String[] conjuros) {
-        try {
-            return 0;
-        } catch (Exception e) {
-            return -1;
-        }
-    }
 }
