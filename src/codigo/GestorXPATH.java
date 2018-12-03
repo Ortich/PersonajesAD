@@ -6,6 +6,7 @@ package codigo;
  * and open the template in the editor.
  */
 import java.io.*;
+import java.util.ArrayList;
 import javax.xml.parsers.*;
 import javax.xml.xpath.*;
 import org.w3c.dom.*;
@@ -48,7 +49,7 @@ public class GestorXPATH {
 
     public String ejecutaXPath(String consulta) {
         String salida = "";
-        String auxiliar[] = null;
+        ArrayList<ArrayList<String>> auxiliar = new ArrayList<ArrayList<String>>();
         Node nodoAuxiliar = null;
         try {
             //No hace falta crear un arbol DOM(parsear) dado que ya lo hemos hecho
@@ -70,20 +71,49 @@ public class GestorXPATH {
                 nodoAuxiliar = nodeList.item(i);
 
                 //Primero vamos a comprobar si lo que tenemos es un elemento
-                //del tipo libro
+                //del tipo Personaje
                 if (nodoAuxiliar.getNodeType() == Node.ELEMENT_NODE
-                        && nodoAuxiliar.getNodeName() == "Libro") {
-                    //Si entramos aqui, tenemos un nodo libro, asique lo procesamos
+                        && nodoAuxiliar.getNodeName() == "Personaje") {
+                    //Si entramos aqui, tenemos un nodo Personaje, asique lo procesamos
                     //para posteriormente poder enviarlo a la pantalla
-                    auxiliar = procesarLibro(nodoAuxiliar);
+                    auxiliar.add(procesarPersonaje(nodoAuxiliar));
 
-                    //Traigo el codigo del DOM para guardar los resultados en 
-                    //procesar libro
-                    salida = salida + "\n" + "Publicado en: " + auxiliar[0];
-                    salida = salida + "\n" + "El autor es: " + auxiliar[2];
-                    salida = salida + "\n" + "El titulo es: " + auxiliar[1];
-                    salida = salida + "\n -----------------------------";
+                    //Primero sacamos el nombre del personaje
+                    salida = salida + "\n" + "Nombre del personaje: ";
+                    salida = salida + "\n" + auxiliar.get(i).get(8);
+                    salida = salida + "\n";
 
+                    //Ahora sacamos los datos principales
+                    for (int j = 0; j < auxiliar.get(i).size(); j++) {
+                        if (j != 8) {
+                            salida = salida + "\n" + auxiliar.get(i).get(j);
+                        }
+                    }
+
+                    salida = salida + "\n --------------------------------------------------------------------------------------------";
+
+                } //Si lo que tenemos es un nodo de un tipo especifico, vamos a mostrar 
+                //solo lo que nos piden
+                else if (nodoAuxiliar.getNodeType() == Node.ELEMENT_NODE
+                        && nodoAuxiliar.getNodeName() == "Armas") {
+                    salida = salida + "\n" + recorreNodoComplejo(nodoAuxiliar);
+                    salida = salida + "\n --------------------------------------------------------------------------------------------" + "\n";
+                } else if (nodoAuxiliar.getNodeType() == Node.ELEMENT_NODE
+                        && nodoAuxiliar.getNodeName() == "Armaduras") {
+                    salida = salida + "\n" + recorreNodoComplejo(nodoAuxiliar);
+                    salida = salida + "\n --------------------------------------------------------------------------------------------" + "\n";
+                } else if (nodoAuxiliar.getNodeType() == Node.ELEMENT_NODE
+                        && nodoAuxiliar.getNodeName() == "Objetos") {
+                    salida = salida + "\n --------------------------------------------------------------------------------------------" + "\n";
+                    salida = salida + "\n" + recorreNodoComplejo(nodoAuxiliar);
+                } else if (nodoAuxiliar.getNodeType() == Node.ELEMENT_NODE
+                        && nodoAuxiliar.getNodeName() == "Dotes") {
+                    salida = salida + "\n --------------------------------------------------------------------------------------------" + "\n";
+                    salida = salida + "\n" + recorreNodoComplejo(nodoAuxiliar);
+                } else if (nodoAuxiliar.getNodeType() == Node.ELEMENT_NODE
+                        && nodoAuxiliar.getNodeName() == "Conjuros") {
+                    salida = salida + "\n" + recorreNodoComplejo(nodoAuxiliar);
+                    salida = salida + "\n --------------------------------------------------------------------------------------------" + "\n";
                 } else {
 
                     salida = salida + "\n"
@@ -99,30 +129,122 @@ public class GestorXPATH {
         }
     }
 
-    //Este es un metodo importado directamente desde la clase DOM del ejercicio anterior
-    protected String[] procesarLibro(Node n) {
+    protected ArrayList<String> procesarPersonaje(Node n) {
 
-        String datos[] = new String[3];
+        ArrayList<String> resultado = new ArrayList<String>();
         Node ntemp = null;
         int contador = 1;
 
-        //Obtiene el valor del primer atributo del nodo
-        datos[0] = n.getAttributes().item(0).getNodeValue();
+        //Obtiene los datos del nodo
+        String[] auxAtts = new String[n.getAttributes().getLength()];
+        for (int i = 0; i < n.getAttributes().getLength(); i++) {
+            if (i != 8) {
+                resultado.add(n.getAttributes().item(i).getNodeName() + ": " + n.getAttributes().item(i).getNodeValue());
+                contador++;
+            } else {
+                resultado.add(n.getAttributes().item(i).getNodeValue());
+                contador++;
+            }
+        }
 
-        //Obtiene los hijos del Libro(titulo y autor)
+        //Obtiene los hijos del Personaje(Armas, Armaduras, Objetos....)
         NodeList nodos = n.getChildNodes();
 
         for (int i = 0; i < nodos.getLength(); i++) {
             ntemp = nodos.item(i);
 
             if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
-                //Para obtener el texto con el titulo y autor se accede 
-                //al nodo TEXT hijo de ntemp y se saca el valor
-                datos[contador] = ntemp.getChildNodes().item(0).getNodeValue();
+                switch (ntemp.getNodeName()) {
 
-                contador++;
+                    case "Experiencia":
+                        resultado.add("\n" + "Experiencia: " + ntemp.getChildNodes().item(0).getNodeValue() + "\n --------------------------------------------------------------------------------------------");
+                        break;
+
+                    case "Armas":
+                        resultado.add("\n" + "Armas: " + recorreNodoSimple(ntemp) + "\n --------------------------------------------------------------------------------------------");
+                        break;
+
+                    case "Armaduras":
+                        resultado.add("\n" + "Armaduras: " + recorreNodoSimple(ntemp) + "\n --------------------------------------------------------------------------------------------");
+                        break;
+
+                    case "Objetos":
+                        resultado.add("\n" + "Objetos: " + recorreNodoComplejo(ntemp) + "\n --------------------------------------------------------------------------------------------");
+                        break;
+
+                    case "Dotes":
+                        resultado.add("\n" + "Dotes: " + recorreNodoSimple(ntemp) + "\n --------------------------------------------------------------------------------------------");
+                        break;
+
+                    case "Habilidades":
+                        resultado.add("\n" + "Habilidades: " + recorreNodoComplejo(ntemp) + "\n --------------------------------------------------------------------------------------------");
+                        break;
+
+                    case "Conjuros":
+                        resultado.add("\n" + "Conjuros: " + recorreNodoComplejo(ntemp) + "\n --------------------------------------------------------------------------------------------");
+                        break;
+                }
+
             }
         }
-        return datos;
+        return resultado;
     }
+
+    private String recorreNodoSimple(Node n) {
+        String resultado = "";
+        Node ntemp = null;
+
+        //Obtiene los hijos del Nodo
+        NodeList nodos = n.getChildNodes();
+
+        for (int i = 0; i < nodos.getLength(); i++) {
+            ntemp = nodos.item(i);
+
+            if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
+                //Accedemos al interior del nodo para sacar el texto
+                resultado = resultado + "\n" + ntemp.getChildNodes().item(0).getNodeValue();
+
+            }
+        }
+
+        return resultado;
+    }
+
+    private String recorreNodoComplejo(Node n) {
+        String resultado = "";
+        Node ntemp = null;
+        String auxiliar = "";
+
+        //Obtiene los hijos delNodo
+        NodeList nodos = n.getChildNodes();
+
+        if (n.getNodeName() == "Objetos") {
+            for (int i = 0; i < nodos.getLength(); i++) {
+                ntemp = nodos.item(i);
+
+                if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
+                    //Vamos a sacar primero el texto del nodo, luego recogeremos los atributos
+                    resultado = resultado + "\n" + ntemp.getChildNodes().item(0).getNodeValue();
+                    for (int j = 0; j < ntemp.getAttributes().getLength(); j++) {
+                        resultado = resultado + " x" + ntemp.getAttributes().item(j).getNodeValue();
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < nodos.getLength(); i++) {
+                ntemp = nodos.item(i);
+
+                if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
+                    //Vamos a sacar primero el texto del nodo, luego recogeremos los atributos
+                    resultado = resultado + "\n" + ntemp.getChildNodes().item(0).getNodeValue();
+                    for (int j = 0; j < ntemp.getAttributes().getLength(); j++) {
+                        resultado = resultado + "\n" + ntemp.getAttributes().item(j).getNodeName() + ": " + ntemp.getAttributes().item(j).getNodeValue();
+                    }
+                    resultado = resultado + "\n";
+                }
+            }
+        }
+        return resultado;
+    }
+
 }
