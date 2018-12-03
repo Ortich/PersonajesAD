@@ -20,6 +20,12 @@ public class JAXB {
     Personajes misPersonajes;
     JAXBContext context;
 
+    /**
+     * Con esta funcion vamos a abrir un documento xml
+     *
+     * @param fichero Documento a abrir
+     * @return 0 si se ha abierto, -1 si ha fallado
+     */
     public int abrir_XML_JAXB(File fichero) {
 
         JAXBContext contexto;
@@ -42,6 +48,12 @@ public class JAXB {
         }
     }
 
+    /**
+     * Con esta funcion haremos lo contrario lo guardaremos como archivo XML
+     *
+     * @param archivo Archivo donde guardarlo
+     * @return 0 si se ha abierto, -1 si ha fallado
+     */
     public int guardarJAXBcomoFILE(File archivo) {
         try {
 

@@ -21,6 +21,12 @@ public class DOM {
 
     Document doc = null;//doc representa el arbol DOM
 
+    /**
+     * Funcion para abrir un arbol DOM desde un fichero
+     *
+     * @param fichero
+     * @return 0 si se ha abierto, -1 si ha fallado
+     */
     public int abrir_XML_DOM(File fichero) {
         try {
             //Se crea un objeto DocumentBuilderFactory
@@ -50,22 +56,23 @@ public class DOM {
         }
     }
 
+    /**
+     * Funcion para añadir un nuevo elemento al arbol DOM
+     *
+     * @param datosBase Lista de atributos del Personaje
+     * @param armas Lista de armas
+     * @param armadruas Lista de Armaduras
+     * @param objetos Lista de Objetos
+     * @param dotes Lista de Dotes
+     * @param habilidades Lista de Habilidades
+     * @param conjuros Lista de Conjuros
+     * @return 0 si se ha abierto, -1 si ha fallado
+     */
     public int annadirDOM(String[] datosBase, ArrayList<String> armas, ArrayList<String> armadruas,
             ArrayList<String[]> objetos, ArrayList<String> dotes, ArrayList<String[]> habilidades,
             ArrayList<String[]> conjuros) {
 
-//        ArrayList<Node> aArmas = new ArrayList<Node>();
         try {
-//            for (int i = 0; i < armas.size(); i++) {
-//                //Se crea un nodo tipo Element con nombre 'Arma'(<Arma>)
-//                Node nArma = doc.createElement("Arma");
-//
-//                //Se crea un nodo tipo Element con nombre 'Armas'(<Armas>)
-//                Node nArmas = doc.createElement("Armas");
-//
-//                //Se crea un nodo tipo texto con el titulo del libro
-//                Node nArma_text = doc.createTextNode(armas.get(i));
-//            }
             //Se crea un nodo tipo Element con nombre 'Armas'(<Armas>)
             Node nArmas = doc.createElement("Armas");
 
@@ -129,6 +136,12 @@ public class DOM {
         }
     }
 
+    /**
+     * Con esta funcion vamos a recoger el arbol DOM y lo guardaremos como XML
+     *
+     * @param nombre del archivo
+     * @return 0 si se ha abierto, -1 si ha fallado
+     */
     public int guardarDOMcomoFILE(String nombre) {
         try {
 

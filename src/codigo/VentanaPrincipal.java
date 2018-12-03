@@ -45,6 +45,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Con esta funcion vamos a abrir el documento XML a la vez que comprobamos
+     * si es valido o no. Si no lo es, saltara un error que se mostrara en
+     * pantalla
+     *
+     * @param doc Documento a abrir
+     * @return 0 si se ha abierto, -1 si ha fallado
+     */
     public int abreDocumento(File doc) {
         boolean todosAbiertos = true;
         try {
@@ -104,18 +112,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     /**
-     * Con esta funcion lo que haremos sera modificar el personaje en el que
-     * estamos situados, utilizando la estructura JAXB que hemos creado para
-     * ello.
-     *
-     * @param personaje Personaje a modificar
-     * @return retorna 0si ha salido bien, -1 si hay un fallo
-     */
-    /**
      * Esta funcion lo que hara sera actualizar los datos mostrados en la
      * aplicacion
      *
-     * @param numero -> Indice del personaje a mosntrar
+     * @param numero -> Indice del personaje a mostrar
      */
     public void actualizaDatos(int numero) {
         boolean sigue;
@@ -375,8 +375,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     /**
-     * Con este metodo haremosu reset al buscador para que al volver a abrirlo,
-     * las casillas esten listas para volver a buscar
+     * Con este metodo haremos un reset al buscador para que al volver a
+     * abrirlo, las casillas esten listas para buscar
      */
     public void reseteaBuscador() {
         jTextFieldNombreBuscar.setText("Nombre");
@@ -394,6 +394,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextFieldAlineamientoBuscar.setEnabled(true);
     }
 
+    /**
+     * Con este metodo llamaremos al GestorXpath y realizaremos una consulta que
+     * se escribira en la pantalla posteriormente. Para hacer la consulta,
+     * recibiremos el elemento a buscar y se lo pasaremos al GestorXpath
+     *
+     * @return String con la consulta entera.
+     */
     public String devuelveConsulta() {
         String consulta = "";
         if (jTextFieldNombreBuscar.isEnabled()) {

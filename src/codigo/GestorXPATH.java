@@ -19,6 +19,12 @@ public class GestorXPATH {
 
     Document documentXMLDoc = null;
 
+    /**
+     * Funcion con la que abriremos el fichero
+     *
+     * @param fichero
+     * @return 0 si se ha abierto, -1 si ha fallado
+     */
     public int abrirXPath(File fichero) {
         try {
             //Se crea un objeto DocumentBuilderFactory
@@ -47,6 +53,13 @@ public class GestorXPATH {
         }
     }
 
+    /**
+     * Con esta funcion vamos a recoger una consulta Xpath que entrara como
+     * parametro y la ejecutaremos, devolviendo el resultado de la misma.
+     *
+     * @param consulta consulta a realizar
+     * @return Resultado
+     */
     public String ejecutaXPath(String consulta) {
         String salida = "";
         ArrayList<ArrayList<String>> auxiliar = new ArrayList<ArrayList<String>>();
@@ -115,13 +128,10 @@ public class GestorXPATH {
                     salida = salida + "\n" + recorreNodoComplejo(nodoAuxiliar);
                     salida = salida + "\n --------------------------------------------------------------------------------------------" + "\n";
                 } else {
-
                     salida = salida + "\n"
                             + nodeList.item(i).getChildNodes().item(0).getNodeValue();
-
                 }
             }
-
             return salida;
         } catch (Exception e) {
             System.out.println("Error: " + e.toString());
@@ -129,30 +139,37 @@ public class GestorXPATH {
         }
     }
 
+    /**
+     * Con esta funcion vamos a recoger un Nodo pesonaje y vamos a destriparlo,
+     * guardando asi los datos de sus Armas, Armaduras, Objetos...etc. Una vez
+     * lo tengamo todo, se va a guardar en un ArrayList que se devolvera con
+     * todo lo que el nodo contenga.
+     *
+     * @param n Nodo Personaje a destripar
+     * @return ArrayList con todas las caracteristicas
+     */
     protected ArrayList<String> procesarPersonaje(Node n) {
 
         ArrayList<String> resultado = new ArrayList<String>();
         Node ntemp = null;
-        int contador = 1;
 
-        //Obtiene los datos del nodo
-        String[] auxAtts = new String[n.getAttributes().getLength()];
+        //Obtiene los atrivutos del nodo Personaje lo primero
         for (int i = 0; i < n.getAttributes().getLength(); i++) {
+            //El nombre lo pondremos sin su descripcion, ya que vendra de forma especial en el resultado
             if (i != 8) {
                 resultado.add(n.getAttributes().item(i).getNodeName() + ": " + n.getAttributes().item(i).getNodeValue());
-                contador++;
             } else {
                 resultado.add(n.getAttributes().item(i).getNodeValue());
-                contador++;
             }
         }
 
         //Obtiene los hijos del Personaje(Armas, Armaduras, Objetos....)
         NodeList nodos = n.getChildNodes();
 
+        //Ahora procesa uno a uno esos hijos, guardando todo lo que tienen dentro
+        //Para ello llamara a nuevas funciones 
         for (int i = 0; i < nodos.getLength(); i++) {
             ntemp = nodos.item(i);
-
             if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
                 switch (ntemp.getNodeName()) {
 
@@ -184,12 +201,18 @@ public class GestorXPATH {
                         resultado.add("\n" + "Conjuros: " + recorreNodoComplejo(ntemp) + "\n --------------------------------------------------------------------------------------------");
                         break;
                 }
-
             }
         }
         return resultado;
     }
 
+    /**
+     * Con esta funcion vamos a recorrer un Nodo mas pequeño que no contenga
+     * ningun atributo. Devolvera todos los hijos que tenga con su contenido.
+     *
+     * @param n Nodo a destripar
+     * @return Todos los nodos hijos y su contenido
+     */
     private String recorreNodoSimple(Node n) {
         String resultado = "";
         Node ntemp = null;
@@ -210,6 +233,14 @@ public class GestorXPATH {
         return resultado;
     }
 
+    /**
+     * Con esta funcion vamos a coger un Nodo que contenga Atributos y elementos
+     * y vamos a recoger toda la informacion que contenga. Para facilitar las
+     * cosas vamos a devolverlo todo como un solo bloque String.
+     *
+     * @param n Nodo a destripar
+     * @return Todos los nodos hijos, sus atributos y su contenido
+     */
     private String recorreNodoComplejo(Node n) {
         String resultado = "";
         Node ntemp = null;
@@ -218,6 +249,9 @@ public class GestorXPATH {
         //Obtiene los hijos delNodo
         NodeList nodos = n.getChildNodes();
 
+        //Vamos a diferenciar entre dos clases, Objetos y el resto
+        //Los objetos devolveran el resultado de la siguiente forma
+        // Objeto xCantidad
         if (n.getNodeName() == "Objetos") {
             for (int i = 0; i < nodos.getLength(); i++) {
                 ntemp = nodos.item(i);

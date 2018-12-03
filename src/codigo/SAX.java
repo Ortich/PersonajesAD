@@ -22,6 +22,12 @@ public class SAX {
     ManejadorSAX sh;
     File ficheroXML;
 
+    /**
+     * Con esta funcion vamos a abrir un documento como SAX
+     *
+     * @param fichero Documento a abrir
+     * @return 0 si se ha abierto, -1 si ha fallado
+     */
     public int abrir_XML_SAX(File fichero) {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -58,6 +64,11 @@ public class SAX {
     }
 }
 
+/**
+ * Clase adicional para recorrer el XML
+ *
+ * @author Daniel
+ */
 class ManejadorSAX extends DefaultHandler {
 
     int ultimoelement;
@@ -69,9 +80,24 @@ class ManejadorSAX extends DefaultHandler {
         ultimoelement = 0;
     }
 
+    /**
+     * Cuando un elemento empieza, leere de que tipo es. Segun su resultado un
+     * switch dira que hacer. Ademas ire usando la cadena_auxiliar para mantener
+     * todo mas ordenado y que quede mas limpio a la hora de ponerlo sobre la
+     * pantalla.
+     *
+     * @param uri
+     * @param localName
+     * @param qName
+     * @param atts
+     * @throws SAXException
+     */
     @Override
     public void startElement(String uri, String localName, String qName,
             Attributes atts) throws SAXException {
+        //Lo primero que podemos encontrarnos es un Personaje, asique vmaos a sacar
+        //todos los atributos que tiene
+        //Posteriormente iremos sacado uno a uno los elementos que tiene un Personaje
         if (qName.equals("Personaje")) {
             cadena_resultado = cadena_resultado
                     + "\nNombre: " + atts.getValue(atts.getQName(0))
@@ -157,7 +183,7 @@ class ManejadorSAX extends DefaultHandler {
 
     }
 
-    // Cuando en este ejemplo se detecta el fnal de un elemento <libro>
+    // Cuando en este ejemplo se detecta el fnal de un elemento 
     // se pone una linea discontinua a la salida
     @Override
     public void endElement(String uri, String localName, String qName)
@@ -175,7 +201,7 @@ class ManejadorSAX extends DefaultHandler {
     }
 
     // Cuando se detecta una cadena de texto posterior a uno de los elementos
-    // <titulo> o <autor> entonces guarda ese texto en la variable correspondiente
+    // que hay dentro de PErsonaje entonces guarda ese texto en la variable correspondiente
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         if (ultimoelement > 0 && ultimoelement <= 14) {
