@@ -95,7 +95,7 @@ class ManejadorSAX extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName,
             Attributes atts) throws SAXException {
-        //Lo primero que podemos encontrarnos es un Personaje, asique vmaos a sacar
+        //Lo primero que podemos encontrarnos es un Personaje, asique vamos a sacar
         //todos los atributos que tiene
         //Posteriormente iremos sacado uno a uno los elementos que tiene un Personaje
         if (qName.equals("Personaje")) {

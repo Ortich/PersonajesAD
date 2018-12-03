@@ -102,18 +102,18 @@ public class DOM {
             Node nPersonaje = doc.createElement("Personaje");
 
             //Al nuevo nodo Personaje se le añaden atributos  
-            ((Element) nPersonaje).setAttribute("nombre", datosBase[1]);
+            ((Element) nPersonaje).setAttribute("nombre", datosBase[0]);
             ((Element) nPersonaje).setAttribute("fuerza", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("destreza", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("cosntitucion", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("inteligencia", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("sabiduria", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("carisma", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("clase", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("raza", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("sexo", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("alineamiento", datosBase[1]);
-            ((Element) nPersonaje).setAttribute("nivel", datosBase[1]);
+            ((Element) nPersonaje).setAttribute("destreza", datosBase[2]);
+            ((Element) nPersonaje).setAttribute("constitucion", datosBase[3]);
+            ((Element) nPersonaje).setAttribute("inteligencia", datosBase[4]);
+            ((Element) nPersonaje).setAttribute("sabiduria", datosBase[5]);
+            ((Element) nPersonaje).setAttribute("carisma", datosBase[6]);
+            ((Element) nPersonaje).setAttribute("clase", datosBase[7]);
+            ((Element) nPersonaje).setAttribute("raza", datosBase[8]);
+            ((Element) nPersonaje).setAttribute("sexo", datosBase[9]);
+            ((Element) nPersonaje).setAttribute("alineamiento", datosBase[10]);
+            ((Element) nPersonaje).setAttribute("nivel", datosBase[11]);
 
             //Se añade a 'Personaje' el resto de nodos creados anteriormente
             nPersonaje.appendChild(nExperiencia);

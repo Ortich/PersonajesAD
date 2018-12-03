@@ -6,7 +6,7 @@
 package codigo;
 
 import java.io.File;
-import javaPersonajes.*;
+import misPersonajes.*;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;

@@ -99,6 +99,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * xml
      */
     public void insertaPersonajesEnComboBox() {
+        jComboBoxPersonajes.removeAllItems();
         boolean sigue = true;
         int index = 0;
         while (sigue) {
@@ -153,8 +154,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
             //Ahora vamos a poner en la caja el primer arma
-            jTextFieldArmas.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getArmas().getArma().get(0));
+            try {
+                jTextFieldArmas.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getArmas().getArma().get(0));
 
+            } catch (Exception e) {
+                jTextFieldArmas.setText("No hay Armas");
+            }
             //-----------------------------------
             //Ahora las armaduras, hacemos lo mismo
             jComboBoxArmadura.removeAllItems();
@@ -170,7 +175,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
             //Ahora vamos a poner en la caja la primera armadura
-            jTextFieldArmaduras.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getArmaduras().getArmadura().get(0));
+            try {
+                jTextFieldArmaduras.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getArmaduras().getArmadura().get(0));
+            } catch (Exception e) {
+                jTextFieldArmaduras.setText("No hay Armaduras");
+            }
 
             //-----------------------------------
             //Tocan los objetos
@@ -187,8 +196,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
             //Ahora vamos a poner en las cajas el primer objeto
-            jTextFieldObjetos.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getObjetos().getObjeto().get(0).getValue());
-            jTextFieldCantidad.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getObjetos().getObjeto().get(0).getCantidad());
+            try {
+                jTextFieldObjetos.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getObjetos().getObjeto().get(0).getValue());
+                jTextFieldCantidad.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getObjetos().getObjeto().get(0).getCantidad());
+            } catch (Exception e) {
+                jTextFieldObjetos.setText("No hay Objetos");
+                jTextFieldCantidad.setText("-");
+            }
 
             //-----------------------------------
             //Tocan las dotes
@@ -205,7 +219,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
             //Ahora vamos a poner en la caja la primera dote
-            jTextFieldObjetos.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getDotes().getDote().get(0));
+            try {
+                jTextFieldDote.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getDotes().getDote().get(0));
+            } catch (Exception e) {
+                jTextFieldDote.setText("No tiene Dotes aun");
+            }
 
             //-----------------------------------
             //Tocan las hablidades
@@ -222,10 +240,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
             //Ahora vamos a poner en las cajas la primera habilidad
-            jTextFieldHabilidad.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getHabilidades().getHabilidad().get(0).getValue());
-            jTextFieldDeClase.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getHabilidades().getHabilidad().get(0).getHabDeClase());
-            jTextFieldTotal.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getHabilidades().getHabilidad().get(0).getTotal());
-            jTextFieldEntrenada.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getHabilidades().getHabilidad().get(0).getSoloEntrenada());
+            try {
+                jTextFieldHabilidad.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getHabilidades().getHabilidad().get(0).getValue());
+                jTextFieldDeClase.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getHabilidades().getHabilidad().get(0).getHabDeClase());
+                jTextFieldTotal.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getHabilidades().getHabilidad().get(0).getTotal());
+                jTextFieldEntrenada.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getHabilidades().getHabilidad().get(0).getSoloEntrenada());
+            } catch (Exception e) {
+                jTextFieldHabilidad.setText("No tiene habilidades aun");
+                jTextFieldDeClase.setText("-");
+                jTextFieldTotal.setText("-");
+                jTextFieldEntrenada.setText("-");
+            }
 
             //-----------------------------------
             //Tocan los conjuros
@@ -242,11 +267,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             }
             //Ahora vamos a poner en las cajas el primer conjuro
-            jTextFieldConjuro.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getValue());
-            jTextFieldConjuroNivel.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getNivel());
-            jTextFieldEscuela.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getEscuela());
-            jTextFieldTiempo.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getTiempoLanzamiento());
-            jTextFieldAlcance.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getAlcance());
+            try {
+                jTextFieldConjuro.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getValue());
+                jTextFieldConjuroNivel.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getNivel());
+                jTextFieldEscuela.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getEscuela());
+                jTextFieldTiempo.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getTiempoLanzamiento());
+                jTextFieldAlcance.setText(jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).getConjuros().getConjuro().get(0).getAlcance());
+            } catch (Exception e) {
+                jTextFieldConjuro.setText("No hay conjuros");
+                jTextFieldConjuroNivel.setText("-");
+                jTextFieldEscuela.setText("-");
+                jTextFieldTiempo.setText("-");
+                jTextFieldAlcance.setText("-");
+            }
 
         } catch (Exception e) {
             System.out.println("No hay mas personajes");
@@ -262,54 +295,54 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void prepararNuevoPersonaje() {
 
         //Empezamos con las caracteristicas principales
-        jTextFieldNombre.setText(" ");
-        jTextFieldSexo.setText(" ");
-        jTextFieldAlineamiento.setText(" ");
-        jTextFieldNivel.setText(" ");
-        jTextFieldRaza.setText(" ");
-        jTextFieldClase.setText(" ");
+        jTextFieldNombre.setText("");
+        jTextFieldSexo.setText("");
+        jTextFieldAlineamiento.setText("");
+        jTextFieldNivel.setText("");
+        jTextFieldRaza.setText("");
+        jTextFieldClase.setText("");
 
-        jTextFieldFuerza.setText(" ");
-        jTextFieldDestreza.setText(" ");
-        jTextFieldConstitucion.setText(" ");
-        jTextFieldInteligencia.setText(" ");
-        jTextFieldSabiduria.setText(" ");
-        jTextFieldCarisma.setText(" ");
-        jTextFieldExperiencia.setText(" ");
+        jTextFieldFuerza.setText("");
+        jTextFieldDestreza.setText("");
+        jTextFieldConstitucion.setText("");
+        jTextFieldInteligencia.setText("");
+        jTextFieldSabiduria.setText("");
+        jTextFieldCarisma.setText("");
+        jTextFieldExperiencia.setText("");
 
         //Ahora vamos con los jComboBox, iremos uno a uno, reseteando tambien 
         //sus cajas a la vez.
         //Armas
         jComboBoxArmas.removeAllItems();
-        jTextFieldArmas.setText(" ");
+        jTextFieldArmas.setText("");
 
         //Armaduras
         jComboBoxArmadura.removeAllItems();
-        jTextFieldArmaduras.setText(" ");
+        jTextFieldArmaduras.setText("");
 
         //Objetos
         jComboBoxObjetos.removeAllItems();
-        jTextFieldObjetos.setText(" ");
-        jTextFieldCantidad.setText(" ");
+        jTextFieldObjetos.setText("");
+        jTextFieldCantidad.setText("");
 
         //Dotes
         jComboBoxDotes.removeAllItems();
-        jTextFieldDote.setText(" ");
+        jTextFieldDote.setText("");
 
         //Habilidades
         jComboBoxHabilidades.removeAllItems();
-        jTextFieldHabilidad.setText(" ");
-        jTextFieldClase.setText(" ");
-        jTextFieldTotal.setText(" ");
-        jTextFieldEntrenada.setText(" ");
+        jTextFieldHabilidad.setText("");
+        jTextFieldClase.setText("");
+        jTextFieldTotal.setText("");
+        jTextFieldEntrenada.setText("");
 
         //Conjuros
         jComboBoxConjuros.removeAllItems();
-        jTextFieldConjuro.setText(" ");
-        jTextFieldConjuroNivel.setText(" ");
-        jTextFieldEscuela.setText(" ");
-        jTextFieldTiempo.setText(" ");
-        jTextFieldAlcance.setText(" ");
+        jTextFieldConjuro.setText("");
+        jTextFieldConjuroNivel.setText("");
+        jTextFieldEscuela.setText("");
+        jTextFieldTiempo.setText("");
+        jTextFieldAlcance.setText("");
     }
 
     /**
@@ -319,27 +352,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void annadePersonajeNuevo() {
         //Primero vamos a declarar variables para guardar los datos
         String[] datosBase = new String[13];
-        ArrayList<String> armas = new ArrayList<String>();
-        ArrayList<String> armadura = new ArrayList<String>();
-        ArrayList<String[]> objetos = new ArrayList<String[]>();
-        ArrayList<String> dotes = new ArrayList<String>();
-        ArrayList<String[]> habilidades = new ArrayList<String[]>();
-        ArrayList<String[]> conjuros = new ArrayList<String[]>();
+        ArrayList<String> armas = new ArrayList<>();
+        ArrayList<String> armadura = new ArrayList<>();
+        ArrayList<String[]> objetos = new ArrayList<>();
+        ArrayList<String> dotes = new ArrayList<>();
+        ArrayList<String[]> habilidades = new ArrayList<>();
+        ArrayList<String[]> conjuros = new ArrayList<>();
 
         //Ahora vamos a empezar gaurdando las estadistica base
         datosBase[0] = jTextFieldNombre.getText();
-        datosBase[1] = jTextFieldSexo.getText();
-        datosBase[2] = jTextFieldAlineamiento.getText();
-        datosBase[3] = jTextFieldNivel.getText();
-        datosBase[4] = jTextFieldRaza.getText();
-        datosBase[5] = jTextFieldClase.getText();
 
-        datosBase[6] = jTextFieldFuerza.getText();
-        datosBase[7] = jTextFieldDestreza.getText();
-        datosBase[8] = jTextFieldConstitucion.getText();
-        datosBase[9] = jTextFieldInteligencia.getText();
-        datosBase[10] = jTextFieldSabiduria.getText();
-        datosBase[11] = jTextFieldCarisma.getText();
+        datosBase[1] = jTextFieldFuerza.getText();
+        datosBase[2] = jTextFieldDestreza.getText();
+        datosBase[3] = jTextFieldConstitucion.getText();
+        datosBase[4] = jTextFieldInteligencia.getText();
+        datosBase[5] = jTextFieldSabiduria.getText();
+        datosBase[6] = jTextFieldCarisma.getText();
+
+        datosBase[7] = jTextFieldClase.getText();
+        datosBase[8] = jTextFieldRaza.getText();
+        datosBase[9] = jTextFieldSexo.getText();
+        datosBase[10] = jTextFieldAlineamiento.getText();
+        datosBase[11] = jTextFieldNivel.getText();
+
         datosBase[12] = jTextFieldExperiencia.getText();
 
         //TODO
@@ -361,6 +396,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         dom.annadirDOM(datosBase, armas, armadura, objetos, dotes, habilidades, conjuros);
         dom.guardarDOMcomoFILE(jFileChooser.getSelectedFile().getAbsolutePath());
         abreDocumento(jFileChooser.getSelectedFile());
+        modificaPersonaje();
     }
 
     /**
@@ -370,6 +406,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public void modificaPersonaje() {
         jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setNombre(jTextFieldNombre.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setRaza(jTextFieldRaza.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setNivel(jTextFieldNivel.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setClase(jTextFieldClase.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setSexo(jTextFieldSexo.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setAlineamiento(jTextFieldAlineamiento.getText());
+
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setFuerza(jTextFieldFuerza.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setDestreza(jTextFieldDestreza.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setConstitucion(jTextFieldConstitucion.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setInteligencia(jTextFieldInteligencia.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setSabiduria(jTextFieldSabiduria.getText());
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setCarisma(jTextFieldCarisma.getText());
+
+        jaxb.misPersonajes.getPersonaje().get(jComboBoxPersonajes.getSelectedIndex()).setExperiencia(jTextFieldExperiencia.getText());
+
         jaxb.guardarJAXBcomoFILE(jFileChooser.getSelectedFile());
         abreDocumento(jFileChooser.getSelectedFile());
     }
@@ -533,10 +584,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabelConsolaErrores = new javax.swing.JLabel();
         jButtonGuardar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         jFileChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1001,9 +1052,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabelConsolaErrores.setText("Errores");
 
         jButtonGuardar.setText("Guardar");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
+        jButtonGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonGuardarMousePressed(evt);
             }
         });
 
@@ -1011,13 +1062,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButtonCancelarMousePressed(evt);
-            }
-        });
-
-        jButton1.setText("Pruebas");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
             }
         });
 
@@ -1036,6 +1080,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Recargar");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu3MousePressed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -1077,142 +1129,136 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabelPersonajes)
                             .addComponent(jButtonAnnadir)))
                     .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelArmas)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxArmas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelArmaduras)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxArmadura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelObjetos)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxObjetos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelDotes)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxDotes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelhabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxHabilidades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextFieldHabilidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldDeClase, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldEntrenada, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelConjuros, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxConjuros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jComboBoxPersonajes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelAbierto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldAbierto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldArmaduras)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAnnadirArmadura))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelObjetosCantidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldCantidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAnnadirObjeto))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextFieldArmas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAnnadirArma))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabelHabilidadNombre)
+                                .addGap(278, 278, 278)
+                                .addComponent(jLabelHabilidadTotal)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabelHabilidadEntrenada)
+                                .addGap(12, 12, 12))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabelHabilidadDeClase)
+                                .addGap(172, 172, 172))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextFieldDote)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAnnadirDote))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelDestreza, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelFuerza, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelConstitucion, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldConstitucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldDestreza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldFuerza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelSabiduria, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelInteligencia, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCarisma, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldCarisma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldSabiduria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldInteligencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelExperiencia, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldExperiencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelConjuroNombre)
+                            .addComponent(jTextFieldConjuro, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelArmas)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxArmas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jTextFieldConjuroNivel, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldEscuela, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldAlcance, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonAnnadirCojuro))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelArmaduras)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxArmadura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelObjetos)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxObjetos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelDotes)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxDotes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelhabilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxHabilidades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextFieldHabilidad)
+                                .addComponent(jLabelConjuroNivel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldDeClase, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldEntrenada, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelConjuros, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxConjuros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jComboBoxPersonajes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelAbierto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldAbierto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldArmaduras)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAnnadirArmadura))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelObjetosCantidad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldCantidad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAnnadirObjeto))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextFieldArmas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAnnadirArma))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabelHabilidadNombre)
-                                        .addGap(278, 278, 278)
-                                        .addComponent(jLabelHabilidadTotal)
-                                        .addGap(48, 48, 48)
-                                        .addComponent(jLabelHabilidadEntrenada)
-                                        .addGap(12, 12, 12))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabelHabilidadDeClase)
-                                        .addGap(172, 172, 172))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextFieldDote)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAnnadirDote))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelDestreza, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelFuerza, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelConstitucion, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldConstitucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldDestreza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldFuerza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelSabiduria, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelInteligencia, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelCarisma, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(18, 18, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldCarisma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldSabiduria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldInteligencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelExperiencia, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextFieldExperiencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelConjuroNombre)
-                                    .addComponent(jTextFieldConjuro, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextFieldConjuroNivel, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldEscuela, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldAlcance, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonAnnadirCojuro))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelConjuroNivel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelConjuroEscuela)
-                                        .addGap(79, 79, 79)
-                                        .addComponent(jLabelConjuroTiempo)
-                                        .addGap(48, 48, 48)
-                                        .addComponent(jLabelConjuroAlcance))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabelConsolaErrores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonModificar)))
-                        .addContainerGap())
+                                .addComponent(jLabelConjuroEscuela)
+                                .addGap(79, 79, 79)
+                                .addComponent(jLabelConjuroTiempo)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabelConjuroAlcance))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(38, 38, 38))))
+                        .addComponent(jLabelConsolaErrores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonModificar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1287,9 +1333,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                     .addComponent(jTextFieldExperiencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldCarisma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelArmas)
                             .addComponent(jComboBoxArmas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1453,15 +1497,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         prepararNuevoPersonaje();
     }//GEN-LAST:event_jButtonAnnadirMousePressed
 
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        jButtonGuardar.setVisible(false);
-        jButtonCancelar.setVisible(false);
-        jComboBoxPersonajes.setVisible(true);
-        jLabelPersonajes.setVisible(true);
-        jButtonAnnadir.setText("Añadir");
-        annadePersonajeNuevo();
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
-
     private void jButtonCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCancelarMousePressed
         jButtonGuardar.setVisible(false);
         jButtonCancelar.setVisible(false);
@@ -1470,12 +1505,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonAnnadir.setText("Añadir");
         actualizaDatos(jComboBoxPersonajes.getSelectedIndex());
     }//GEN-LAST:event_jButtonCancelarMousePressed
-
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-        //Boton de pruebas
-        jTextPaneConsola.setText(xpath.ejecutaXPath("Personajes/Personaje/Objetos"));
-
-    }//GEN-LAST:event_jButton1MousePressed
 
     private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
         reseteaBuscador();
@@ -1588,6 +1617,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         reseteaBuscador();
     }//GEN-LAST:event_jButtonBuscar1MousePressed
 
+    private void jButtonGuardarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGuardarMousePressed
+        jButtonGuardar.setVisible(false);
+        jButtonCancelar.setVisible(false);
+        jComboBoxPersonajes.setVisible(true);
+        jLabelPersonajes.setVisible(true);
+        jButtonAnnadir.setText("Añadir");
+        annadePersonajeNuevo();
+        abreDocumento(jFileChooser.getSelectedFile());
+    }//GEN-LAST:event_jButtonGuardarMousePressed
+
+    private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
+        jTextPaneConsola.setText(sax.recorrerSAX());
+    }//GEN-LAST:event_jMenu3MousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -1624,7 +1667,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAnnadir;
     private javax.swing.JButton jButtonAnnadirArma;
     private javax.swing.JButton jButtonAnnadirArmadura;
@@ -1691,6 +1733,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelhabilidades;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldAbierto;
