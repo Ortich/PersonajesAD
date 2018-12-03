@@ -89,6 +89,8 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jButtonBuscar1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonBuscar" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -142,7 +144,10 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButtonBuscar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonBuscar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -153,6 +158,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonBuscarMousePressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelNombreBuscar">
           <Properties>
@@ -236,26 +244,49 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Todos los Objetos"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonObjetosBuscarMousePressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonArmadurasBuscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Todas las Armaduras"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonArmadurasBuscarMousePressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonArmasBuscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Todas las Armas"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonArmasBuscarMousePressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonConjurosBuscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Todos los Conjuros"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonConjurosBuscarMousePressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDotesBuscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Todas las Dotes"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonDotesBuscarMousePressed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonBuscar1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Borrar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonBuscar1MousePressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

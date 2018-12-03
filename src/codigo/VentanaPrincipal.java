@@ -394,6 +394,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextFieldAlineamientoBuscar.setEnabled(true);
     }
 
+    public String devuelveConsulta() {
+        String consulta = "";
+        if (jTextFieldNombreBuscar.isEnabled()) {
+            consulta = xpath.ejecutaXPath("Personajes/Personaje[./@nombre='" + jTextFieldNombreBuscar.getText() + "']");
+        }
+        if (jTextFieldRazaBuscar.isEnabled()) {
+            consulta = xpath.ejecutaXPath("Personajes/Personaje[./@raza='" + jTextFieldRazaBuscar.getText() + "']");
+        }
+        if (jTextFieldSexoBuscar.isEnabled()) {
+            consulta = xpath.ejecutaXPath("Personajes/Personaje[./@sexo='" + jTextFieldSexoBuscar.getText() + "']");
+        }
+        if (jTextFieldNivelBuscar.isEnabled()) {
+            consulta = xpath.ejecutaXPath("Personajes/Personaje[./@nivel='" + jTextFieldNivelBuscar.getText() + "']");
+        }
+        if (jTextFieldClaseBuscar.isEnabled()) {
+            consulta = xpath.ejecutaXPath("Personajes/Personaje[./@clase='" + jTextFieldClaseBuscar.getText() + "']");
+        }
+        if (jTextFieldAlineamientoBuscar.isEnabled()) {
+            consulta = xpath.ejecutaXPath("Personajes/Personaje[./@alineamiento='" + jTextFieldAlineamientoBuscar.getText() + "']");
+        }
+        return consulta;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -424,6 +447,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonArmasBuscar = new javax.swing.JButton();
         jButtonConjurosBuscar = new javax.swing.JButton();
         jButtonDotesBuscar = new javax.swing.JButton();
+        jButtonBuscar1 = new javax.swing.JButton();
         jLabelAbierto = new javax.swing.JLabel();
         jTextFieldAbierto = new javax.swing.JTextField();
         jLabelNombre = new javax.swing.JLabel();
@@ -533,6 +557,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDialogBuscador.setMinimumSize(new java.awt.Dimension(360, 246));
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonBuscarMousePressed(evt);
+            }
+        });
 
         jLabelNombreBuscar.setText("Nombre");
 
@@ -589,14 +618,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonObjetosBuscar.setText("Todos los Objetos");
+        jButtonObjetosBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonObjetosBuscarMousePressed(evt);
+            }
+        });
 
         jButtonArmadurasBuscar.setText("Todas las Armaduras");
+        jButtonArmadurasBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonArmadurasBuscarMousePressed(evt);
+            }
+        });
 
         jButtonArmasBuscar.setText("Todas las Armas");
+        jButtonArmasBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonArmasBuscarMousePressed(evt);
+            }
+        });
 
         jButtonConjurosBuscar.setText("Todos los Conjuros");
+        jButtonConjurosBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonConjurosBuscarMousePressed(evt);
+            }
+        });
 
         jButtonDotesBuscar.setText("Todas las Dotes");
+        jButtonDotesBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonDotesBuscarMousePressed(evt);
+            }
+        });
+
+        jButtonBuscar1.setText("Borrar");
+        jButtonBuscar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonBuscar1MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDialogBuscadorLayout = new javax.swing.GroupLayout(jDialogBuscador.getContentPane());
         jDialogBuscador.getContentPane().setLayout(jDialogBuscadorLayout);
@@ -638,6 +699,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogBuscadorLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonBuscar1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonBuscar))
         );
         jDialogBuscadorLayout.setVerticalGroup(
@@ -680,7 +743,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonConjurosBuscar)))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonBuscar)
+                .addGroup(jDialogBuscadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButtonBuscar1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1401,6 +1466,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
         //Boton de pruebas
+        jTextPaneConsola.setText(xpath.ejecutaXPath("Personajes/Personaje/Objetos"));
 
     }//GEN-LAST:event_jButton1MousePressed
 
@@ -1434,7 +1500,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldRazaBuscarMousePressed
 
     private void jTextFieldSexoBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSexoBuscarMousePressed
-        if (jTextFieldRazaBuscar.getText().equals("Sexo") && jTextFieldSexoBuscar.isEnabled()) {
+        if (jTextFieldSexoBuscar.getText().equals("Sexo") && jTextFieldSexoBuscar.isEnabled()) {
             jTextFieldSexoBuscar.setText("");
 
             jTextFieldNombreBuscar.setEnabled(false);
@@ -1480,6 +1546,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jTextFieldClaseBuscar.setEnabled(false);
         }
     }//GEN-LAST:event_jTextFieldAlineamientoBuscarMousePressed
+
+    private void jButtonBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarMousePressed
+        jTextPaneConsola.setText(devuelveConsulta());
+        jDialogBuscador.setVisible(false);
+    }//GEN-LAST:event_jButtonBuscarMousePressed
+
+    private void jButtonArmasBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonArmasBuscarMousePressed
+        jTextPaneConsola.setText(xpath.ejecutaXPath("Personajes/Personaje/Armas"));
+        jDialogBuscador.setVisible(false);
+    }//GEN-LAST:event_jButtonArmasBuscarMousePressed
+
+    private void jButtonArmadurasBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonArmadurasBuscarMousePressed
+        jTextPaneConsola.setText(xpath.ejecutaXPath("Personajes/Personaje/Armaduras"));
+        jDialogBuscador.setVisible(false);
+    }//GEN-LAST:event_jButtonArmadurasBuscarMousePressed
+
+    private void jButtonObjetosBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonObjetosBuscarMousePressed
+        jTextPaneConsola.setText(xpath.ejecutaXPath("Personajes/Personaje/Objetos"));
+        jDialogBuscador.setVisible(false);
+    }//GEN-LAST:event_jButtonObjetosBuscarMousePressed
+
+    private void jButtonDotesBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDotesBuscarMousePressed
+        jTextPaneConsola.setText(xpath.ejecutaXPath("Personajes/Personaje/Dotes"));
+        jDialogBuscador.setVisible(false);
+    }//GEN-LAST:event_jButtonDotesBuscarMousePressed
+
+    private void jButtonConjurosBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConjurosBuscarMousePressed
+        jTextPaneConsola.setText(xpath.ejecutaXPath("Personajes/Personaje/Conjuros"));
+        jDialogBuscador.setVisible(false);
+    }//GEN-LAST:event_jButtonConjurosBuscarMousePressed
+
+    private void jButtonBuscar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscar1MousePressed
+        reseteaBuscador();
+    }//GEN-LAST:event_jButtonBuscar1MousePressed
 
     /**
      * @param args the command line arguments
@@ -1527,6 +1627,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonArmadurasBuscar;
     private javax.swing.JButton jButtonArmasBuscar;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonBuscar1;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConjurosBuscar;
     private javax.swing.JButton jButtonDotesBuscar;
